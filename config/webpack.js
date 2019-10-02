@@ -7,7 +7,10 @@ module.exports = {
     entry: "./src/index.js",
     output: {
         path: path.join(__dirname, "../dist"),
-        filename: "index.js"
+        filename: "models.js",
+        library: "models",
+        libraryTarget: 'umd',
+        globalObject: `(typeof self !== 'undefined' ? self : this)`
     },
     resolve: {	
       modules: [
