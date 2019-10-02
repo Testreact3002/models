@@ -169,6 +169,6 @@ function deepSea(){
    
 }
 
-module.exports = {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Urchin, deepSea};
+module.exports = {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish, deepSea};
 
 
