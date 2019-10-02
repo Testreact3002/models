@@ -1,0 +1,31 @@
+{
+  "name": "models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config config/webpack.js",
+    "deploy": "npm run build && gh-pages -d dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testreact3002/models.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/testreact3002/models/issues"
+  },
+  "homepage": "https://github.com/testreact3002/models#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-syntax-bigint": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "dotenv-webpack": "^1.7.0",
+    "gh-pages": "^2.1.1",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  }
+}
