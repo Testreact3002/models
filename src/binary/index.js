@@ -11,8 +11,8 @@ function bin2dec(str = '0'){
   var start = 0;
   for(;start<l && arr['start'] === '0' ;start++);
   if(typeof BigInt === 'function'){
-    n = 0n;
-    one = 1n;
+    n = BigInt(0);
+    one = BigInt(1);
   }else{
     if(l-start>53){
       throw Error('Number overflow')
