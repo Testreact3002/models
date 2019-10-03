@@ -1,0 +1,16 @@
+{
+  "name": "models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testreact3002/models.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/testreact3002/models/issues"
+  },
+  "homepage": "https://github.com/testreact3002/models#readme"
+}
