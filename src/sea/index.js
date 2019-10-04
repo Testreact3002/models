@@ -52,7 +52,8 @@ class Sea {
    
 }
 class Swimable {
-   constructor(){
+   constructor(color){
+      this.color=color;
       this.p = new Position();
       this.bitten = 0;
       
@@ -69,12 +70,20 @@ class Swimable {
    display(){
      console.log(this);
    }
+   toJSON(){
+      const self = this;
+      return {
+      color: self.color,
+      name: self.name,
+      position: self.p|0
+    }
+   }
    
 }
 
 class Biteable extends Swimable{
-   constructor(){
-     super();
+   constructor(color){
+     super(color);
      this.bites = 0;
    }
    bite(){
@@ -101,7 +110,7 @@ class Biteable extends Swimable{
 
 class Shark extends Biteable{
     get name (){
-      return 'Shark';
+      return 'shark';
     }
     toString (){
        return 'Shark '+ super.toString()
@@ -110,7 +119,7 @@ class Shark extends Biteable{
 
 class Turtle extends Biteable{
     get name (){
-      return 'Turtle';
+      return 'turtle';
     }
     toString (){
        return 'Turtle '+ super.toString()
@@ -119,7 +128,7 @@ class Turtle extends Biteable{
 
 class Jellyfish extends Swimable{
     get name () {
-      return 'Jellyfish';
+      return 'jellyfish';
     }
     toString (){
        return 'Jellyfish '+ super.toString()
@@ -128,7 +137,7 @@ class Jellyfish extends Swimable{
 
 class Starfish extends Swimable{
     get name (){
-      return 'Starfish';
+      return 'starfish';
     }
     toString (){
        return 'Starfish '+ super.toString()
