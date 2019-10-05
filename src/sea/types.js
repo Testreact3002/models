@@ -1,0 +1,7 @@
+module.exports = {
+  "SEA_FISH__SWIM":"SEA_FISH__SWIM",
+  "SEA_FISH__BITE":"SEA_FISH__BYTE",
+  "SEA_FISH__DICE":"SEA_FISH__DICE",
+  "SEA_FISH__DISP":"SEA_FISH__DISPLAY",
+}
+

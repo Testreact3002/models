@@ -7,6 +7,9 @@
 Для игры необходимо, чтобы мы могли создавать объекты каждого морского
 существа, который бы имел методы display (для отображения), bite, swim.
  */
+const Emitter = require("emmett");
+const types = require( "./types.js");
+
 class Position {
   constructor(x = 0){
     this.x = x % 23;
@@ -41,6 +44,9 @@ class Sea {
    at(p,cb){
      this.board[p|0].forEach(cb);
    }
+  // toJSON(){
+  //   this.board.map((swimables)=>Array.from(swimables).map((swimable)=>swimable.toJSON()));
+  // }
    print(){
      for(let i = 0; i< 24; i++){
        this.board[i].forEach((swimable)=>{
@@ -51,8 +57,9 @@ class Sea {
 
    
 }
-class Swimable {
+class Swimable extends Emitter{
    constructor(color){
+      super();
       this.color=color;
       this.p = new Position();
       this.bitten = 0;
@@ -61,22 +68,19 @@ class Swimable {
    swim (dices){
      sea.remove(this);
      this.p.to = dices;
-     console.log(this.name,'swims to',this.p|0);
      sea.add(this);
+     this.emit(types.SEA_FISH__SWIM);
+   }
+   get dices(){
+     const result = this.p.dices;
+     this.emit(types.SEA_FISH__DICE, result);
+     return result;
    }
    toString(){
      return 'bitten '+ this.bitten+ ' times';
    }
    display(){
-     console.log(this);
-   }
-   toJSON(){
-      const self = this;
-      return {
-      color: self.color,
-      name: self.name,
-      position: self.p|0
-    }
+     this.emit(types.SEA_FISH__DISP);
    }
    
 }
@@ -92,8 +96,10 @@ class Biteable extends Swimable{
        if(x!==this && x.name != this.name){
          x.bitten++;
          this.bites++;
+         this.emit(types.SEA_FISH__BITE, {bitten: x})
          x.display();
          this.display();
+                  
        }
 
     });
@@ -160,8 +166,6 @@ function deepSea(){
   function run(){
     swimables.forEach((x)=>{
       const dices = x.p.dices;
-      
-      console.log(x.name ,'dices',dices);
       x.swim(dices);
       //sea.print();
       
@@ -178,6 +182,6 @@ function deepSea(){
    
 }
 
-module.exports = {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish, deepSea};
+module.exports = {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish, deepSea, types};
 
 
