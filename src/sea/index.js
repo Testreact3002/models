@@ -7,7 +7,6 @@
 Для игры необходимо, чтобы мы могли создавать объекты каждого морского
 существа, который бы имел методы display (для отображения), bite, swim.
  */
-const Emitter = require("emmett");
 const types = require( "./types.js");
 
 class Position {
@@ -57,6 +56,9 @@ class Sea {
 
    
 }
+
+function creator(Emitter, Sea){
+var sea = new Sea();
 class Swimable extends Emitter{
    constructor(color){
       super();
@@ -150,10 +152,12 @@ class Starfish extends Swimable{
     }
 }
 
+return {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish};
+}
+function deepSea(Emitter, Sea){
+   
+const  {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish} = creator(Emitter,Sea);
 
-var sea = new Sea();
-
-function deepSea(){
    let swimables =  [ new Starfish(),
     new Starfish(),
     new Starfish(),
@@ -168,7 +172,7 @@ function deepSea(){
       const dices = x.dices;
       x.swim(dices);
       //sea.print();
-      
+      n++; 
     });
     if(n < 3000){ 
       tm = setTimeout(run,1000);
@@ -182,6 +186,6 @@ function deepSea(){
    
 }
 
-module.exports = {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish, deepSea, types};
+module.exports = {creator, Sea, deepSea, types};
 
 

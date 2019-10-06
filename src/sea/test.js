@@ -1,6 +1,9 @@
 const mocha = require("mocha");
 const {assert} =require("chai");
-const {Swimable, Starfish, Shark, Turtle, Jellyfish, sea,types} = require("./index.js");
+const {creator, types, Sea} = require("./index.js");
+const Emitter = require("emmett");
+
+const {Swimable, Starfish, Shark, Turtle, Jellyfish, sea} = creator(Emitter,Sea);
 
 describe("Swimable",()=>{
   it("Shark is Swimable", ()=>{
