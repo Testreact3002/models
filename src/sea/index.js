@@ -165,7 +165,7 @@ function deepSea(){
   let tm;
   function run(){
     swimables.forEach((x)=>{
-      const dices = x.p.dices;
+      const dices = x.dices;
       x.swim(dices);
       //sea.print();
       
