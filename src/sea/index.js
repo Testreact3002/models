@@ -84,6 +84,9 @@ class Swimable extends Emitter{
    display(){
      this.emit(types.SEA_FISH__DISP);
    }
+   toJSON(){
+     return {color: this.color, name: this.name, bitten: this.bitten, p: this.p|0 }
+   }
    
 }
 
@@ -113,6 +116,11 @@ class Biteable extends Swimable{
    }
    toString(){
      return 'bites '+ this.bites+ ' times'+ super.toString();
+   }
+   toJSON(){
+     var js = super.toJSON();
+     js.bites = this.bites|0;  
+     return js;
    }
 }
 
