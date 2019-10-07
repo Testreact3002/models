@@ -162,9 +162,11 @@ class Starfish extends Swimable{
 
 return {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish};
 }
+
+
 function deepSea(Emitter, Sea){
    
-const  {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish} = creator(Emitter,Sea);
+   const  {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish} = creator(Emitter,Sea);
 
    let swimables =  [ new Starfish(),
     new Starfish(),
@@ -173,25 +175,38 @@ const  {Biteable, Swimable, sea, Shark, Turtle, Jellyfish, Starfish} = creator(E
     new Jellyfish(),
     new Turtle(),
   ];
+
+  swimables.forEach((x)=>{
+     x.on(types.SEA_FISH__DICE,function(e){
+        console.log(types.SEA_FISH__DICE,e.target,e.data);
+     });
+     x.on(types.SEA_FISH__SWIM,function(e){
+       console.log(types.SEA_FISH__SWIM,e.target);
+     });
+     x.on(types.SEA_FISH__BITE,function(e){
+       console.log(types.SEA_FISH__BITE,e.target, e.data);
+     });
+     x.on(types.SEA_FISH__DISP,function(e){
+       console.log(types.SEA_FISH__DISP,e.target);
+     });
+  });
+
   let n = 0;
   let tm;
-  function run(){
-    swimables.forEach((x)=>{
-      const dices = x.dices;
-      x.swim(dices);
-      //sea.print();
-      n++; 
-    });
-    if(n < 3000){ 
-      tm = setTimeout(run,1000);
-    }else{
-      clearTimeout(tm);
+  function run(i=0){
+    if(i >= swimables.length){
+     if(n >= 3000){
+       clearTimeout(tm);
+       return;
+     }
+     i = 0;
     }
-
+    let x = swimables[i];
+    const dices = x.dices;
+    x.swim(dices);
+    tm = setTimeout(run, 3000, ++i);
   }
-  
   run();
-   
 }
 
 module.exports = {creator, Sea, deepSea, types};
