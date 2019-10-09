@@ -68,13 +68,13 @@ class Swimable extends Emitter{
       
    }
    swim (dices){
-     sea.remove(this);
      this.p.to = dices;
      sea.add(this);
      this.emit(types.SEA_FISH__SWIM);
    }
    get dices(){
      const result = this.p.dices;
+     sea.remove(this);
      this.emit(types.SEA_FISH__DICE, result);
      return result;
    }
