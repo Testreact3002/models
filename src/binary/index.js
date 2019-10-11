@@ -6,7 +6,7 @@
 function bin2dec(str = '0'){
   var arr = str.split('');
   var l = arr.length;
-  var one;
+  var two;
   var n;
   var start = 0;
   for(;start<l && arr['start'] === '0' ;start++);
