@@ -12,16 +12,16 @@ function bin2dec(str = '0'){
   for(;start<l && arr['start'] === '0' ;start++);
   if(typeof BigInt === 'function'){
     n = BigInt(0);
-    one = BigInt(1);
+    two = BigInt(2);
   }else{
     if(l-start>53){
       throw Error('Number overflow')
     }
     n = 0;
-    one = 1; 
+    two = 2; 
   }
   for (let i = start; i < l; i++){
-    n = n << one;
+    n *=two;
     if(arr[i]==='1'){
       n++;
     }
